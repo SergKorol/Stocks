@@ -1,3 +1,4 @@
+using System.Net.WebSockets;
 using System.Text.Json;
 using Mapster;
 using Microsoft.Extensions.Logging;
@@ -7,7 +8,6 @@ using Stocks.Domain.Models;
 using Stocks.WebSockets.Models;
 using Stocks.WebSockets.Payloads;
 using Stocks.WebSockets.Responses;
-using WebSocketSharp;
 
 namespace Stocks.WebSockets;
 
