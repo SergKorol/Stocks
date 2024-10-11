@@ -1,0 +1,45 @@
+﻿version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=john_doe
+      - POSTGRES_PASSWORD=YourStrongPassword!
+      - POSTGRES_DB=MarketAssetsDb
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - assetprice_network
+
+  stocks.api:
+    build:
+      context: .
+      dockerfile: Stocks.API/Dockerfile
+    container_name: stocks.api
+    depends_on:
+      - postgres
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://0.0.0.0:80
+      - Postgres__DefaultConnection=Host=postgres;Port=5432;Database=MarketAssetsDb;Username=john_doe;Password=YourStrongPassword!;
+    ports:
+      - "8080:80"
+    networks:
+      - assetprice_network
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -h postgres -p 5432 -U john_doe" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  assetprice_network:
+    driver: bridge

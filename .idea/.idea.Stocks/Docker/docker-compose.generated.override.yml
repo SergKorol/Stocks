@@ -1,0 +1,21 @@
+# This is a generated file. Not intended for manual editing.
+version: "3.8"
+services:
+  stocks.api:
+    build:
+      context: "/Users/serhiikorol/RiderProjects/Stocks"
+      dockerfile: "Stocks.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net8.0/Stocks.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "stocks.api:dev"
+    ports: []
+    volumes:
+    - "/Users/serhiikorol/.nuget/packages:/home/app/.nuget/packages"
+    - "/Users/serhiikorol/RiderProjects/Stocks/Stocks.API:/app:rw"
+    - "/Users/serhiikorol/RiderProjects/Stocks:/src:rw"
+    working_dir: "/app"
