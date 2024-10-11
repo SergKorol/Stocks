@@ -26,14 +26,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Stocks.API\Stocks.API.csproj" />
       <ProjectReference Include="..\Stocks.HTTP\Stocks.HTTP.csproj" />
       <ProjectReference Include="..\Stocks.WebSockets\Stocks.WebSockets.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <Reference Include="Microsoft.AspNetCore">
-        <HintPath>..\..\..\..\..\usr\local\share\dotnet\shared\Microsoft.AspNetCore.App\8.0.0\Microsoft.AspNetCore.dll</HintPath>
-      </Reference>
     </ItemGroup>
 
 </Project>
